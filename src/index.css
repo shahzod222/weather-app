@@ -12,20 +12,20 @@ body {
 .search-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   max-width: 100%;
-  padding: 2em;
+  padding: 2em 1em;
 }
 
 .search-bar input {
-  flex: 1;
-  margin-right: 2em;
+  width: 70%;
   padding: 10px;
   border-radius: 10px;
   font-size: 1em;
   outline: none;
   border: 1px solid #fff;
   font-family: "Inter";
+  margin-right: 0.5em;
 }
 
 .search-bar button {
@@ -53,6 +53,10 @@ body {
   max-width: 100%;
   padding: 2em;
   font-size: 1.4em;
+}
+
+.info h1 {
+  color: #fff;
 }
 
 .info-table {
