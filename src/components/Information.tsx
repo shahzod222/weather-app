@@ -9,7 +9,7 @@ const Information = () => {
         <h1>Loading...</h1>
       ) : (
         <>
-          {errorMessage && <h2>{errorMessage}</h2>}
+          {errorMessage && <h1>{errorMessage}</h1>}
           {information !== null && (
             <table className="info-table">
               <tbody>
