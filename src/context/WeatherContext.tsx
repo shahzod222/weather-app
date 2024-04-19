@@ -14,13 +14,28 @@ type ContextType = {
 
 type WeatherInformation = {
   resolvedAddress: string;
-  description: string;
   currentConditions: {
-    cloudcover: number;
+    icon: string;
     windspeed: number;
-    humidity: number;
     temp: number;
+    sunrise: string;
+    sunset: string;
+    humidity: number;
+    conditions: string;
   };
+  days: {
+    datetime: string;
+    tempmax: number;
+    tempmin: number;
+    windspeed: string;
+    icon: string;
+    humidity: number;
+    hours: {
+      datetime: string;
+      icon: string;
+      temp: number;
+    }[];
+  }[];
 };
 
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -49,7 +64,7 @@ export const WeatherProvider: React.FC<PropsWithChildren> = ({ children }) => {
         setInformation(data);
         setLoading(false);
       } else {
-        setErrorMessage("Bad API Request: Invalid location parameter value.");
+        setErrorMessage("Please enter valid location");
       }
     } catch (error) {
       setErrorMessage(`Error fetching weather data: ${error}`);
