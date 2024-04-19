@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, FormEvent } from "react";
 import { useWeather } from "../context/WeatherContext";
 
 const Search = () => {
@@ -8,20 +8,21 @@ const Search = () => {
     setLocation(e.target.value);
   };
 
-  const handleClick = () => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     getData();
   };
 
   return (
-    <div className="search-bar">
+    <form className="search-bar" onSubmit={handleSubmit}>
       <input
         type="text"
         value={location}
         onChange={handleChange}
         placeholder="Enter location..."
       />
-      <button onClick={handleClick}>Search</button>
-    </div>
+      <button type="submit">Search</button>
+    </form>
   );
 };
 
