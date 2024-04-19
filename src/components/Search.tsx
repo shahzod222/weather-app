@@ -2,7 +2,8 @@ import { ChangeEvent, FormEvent } from "react";
 import { useWeather } from "../context/WeatherContext";
 
 const Search = () => {
-  const { location, setLocation, getData } = useWeather();
+  const { location, setLocation, getData, weatherUnit, setWeatherUnit } =
+    useWeather();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setLocation(e.target.value);
@@ -11,6 +12,10 @@ const Search = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     getData();
+  };
+
+  const handleUnitChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setWeatherUnit(e.target.value);
   };
 
   return (
@@ -22,6 +27,18 @@ const Search = () => {
         placeholder="Enter location..."
         required
       />
+      <select
+        id="selectOption"
+        value={weatherUnit}
+        onChange={handleUnitChange}
+        required
+      >
+        <option value="">Select...</option>
+        <option value="metric">Metric</option>
+        <option value="us">US</option>
+        <option value="uk">UK</option>
+        <option value="base">Base</option>
+      </select>
       <button type="submit">Search</button>
     </form>
   );

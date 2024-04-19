@@ -75,7 +75,7 @@ const Information = () => {
               <div className="todays-weather">
                 {[3, 6, 9, 12, 15, 18, 21].map((el) => {
                   return (
-                    <div className="todays-weather-element">
+                    <div className="todays-weather-element" key={el}>
                       <p>
                         {formatTimeShort(
                           information.days[0].hours[el].datetime
@@ -93,7 +93,7 @@ const Information = () => {
               <div className="next-days">
                 {[1, 2, 3, 4, 5].map((el) => {
                   return (
-                    <div className="next-days-element">
+                    <div className="next-days-element" key={el}>
                       <div>
                         <h4>
                           {formatDayAbbrev(information.days[el].datetime)}
