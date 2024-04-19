@@ -15,27 +15,27 @@ const Information = () => {
               <tbody>
                 <tr>
                   <td>Name</td>
-                  <td>{information.name}</td>
+                  <td>{information.resolvedAddress}</td>
                 </tr>
                 <tr>
                   <td>Weather</td>
-                  <td>{information.weather[0].main}</td>
+                  <td>{information.description}</td>
                 </tr>
                 <tr>
                   <td>Temperature</td>
-                  <td>{information.main.temp}°</td>
+                  <td>{information.currentConditions.temp}°</td>
                 </tr>
                 <tr>
                   <td>Humidity</td>
-                  <td>{information.main.humidity}%</td>
+                  <td>{information.currentConditions.humidity}%</td>
                 </tr>
                 <tr>
-                  <td>Pressure</td>
-                  <td>{information.main.pressure}in</td>
+                  <td>Cloud Cover</td>
+                  <td>{information.currentConditions.cloudcover}%</td>
                 </tr>
                 <tr>
                   <td>Wind</td>
-                  <td>{information.wind.speed}m/s</td>
+                  <td>{information.currentConditions.windspeed}m/s</td>
                 </tr>
               </tbody>
             </table>

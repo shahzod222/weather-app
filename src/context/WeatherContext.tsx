@@ -13,19 +13,14 @@ type ContextType = {
 };
 
 type WeatherInformation = {
-  main: {
-    temp: number;
-    pressure: number;
+  resolvedAddress: string;
+  description: string;
+  currentConditions: {
+    cloudcover: number;
+    windspeed: number;
     humidity: number;
+    temp: number;
   };
-  weather: {
-    main: string;
-  }[];
-  wind: {
-    deg: number;
-    speed: number;
-  };
-  name: string;
 };
 
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -45,11 +40,12 @@ export const WeatherProvider: React.FC<PropsWithChildren> = ({ children }) => {
       setErrorMessage("");
       setInformation(null);
       setLoading(true);
-      const url = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`;
+      const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/?key=${API_KEY}&unitGroup=metric`;
       const response = await fetch(url);
 
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         setInformation(data);
         setLoading(false);
       } else {
