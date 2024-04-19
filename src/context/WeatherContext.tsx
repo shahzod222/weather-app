@@ -6,9 +6,11 @@ type ContextType = {
   loading: boolean;
   setLoading: (loading: boolean) => void;
   information: WeatherInformation | null;
+  setInformation: (information: WeatherInformation) => void;
   errorMessage: string;
   setErrorMessage: (message: string) => void;
-  setInformation: (information: WeatherInformation) => void;
+  weatherUnit: string;
+  setWeatherUnit: (weatherUnit: string) => void;
   getData: () => void;
 };
 
@@ -44,6 +46,7 @@ const WeatherContext = createContext<ContextType | null>(null);
 
 export const WeatherProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [location, setLocation] = useState("");
+  const [weatherUnit, setWeatherUnit] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [information, setInformation] = useState<WeatherInformation | null>(
@@ -55,12 +58,11 @@ export const WeatherProvider: React.FC<PropsWithChildren> = ({ children }) => {
       setErrorMessage("");
       setInformation(null);
       setLoading(true);
-      const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/?key=${API_KEY}&unitGroup=metric`;
+      const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/?key=${API_KEY}&unitGroup=${weatherUnit}`;
       const response = await fetch(url);
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
         setInformation(data);
         setLoading(false);
       } else {
@@ -85,6 +87,8 @@ export const WeatherProvider: React.FC<PropsWithChildren> = ({ children }) => {
         setLoading,
         errorMessage,
         setErrorMessage,
+        weatherUnit,
+        setWeatherUnit,
       }}
     >
       {children}

@@ -40,7 +40,19 @@ body {
   outline: none;
   border: 1px solid #fff;
   font-family: "Inter";
-  margin-right: 0.5em;
+}
+
+.search-bar select {
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #fff;
+  color: #a0153e;
+  font-size: 1em;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  font-family: "Inter";
+  margin: 0 0.5em;
 }
 
 .search-bar button {
