@@ -20,6 +20,7 @@ const Search = () => {
         value={location}
         onChange={handleChange}
         placeholder="Enter location..."
+        required
       />
       <button type="submit">Search</button>
     </form>
