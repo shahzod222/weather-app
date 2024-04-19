@@ -49,7 +49,7 @@ export const WeatherProvider: React.FC<PropsWithChildren> = ({ children }) => {
         setInformation(data);
         setLoading(false);
       } else {
-        setErrorMessage(`Error fetching weather data: ${response.statusText}`);
+        setErrorMessage("Bad API Request: Invalid location parameter value.");
       }
     } catch (error) {
       setErrorMessage(`Error fetching weather data: ${error}`);
