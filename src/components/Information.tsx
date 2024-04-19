@@ -26,7 +26,7 @@ const Information = () => {
                 <div className="weather-details">
                   <div className="weather-details-part1">
                     <img
-                      src={`../../public/assets/icons/${information.currentConditions.icon}.png`}
+                      src={`/assets/icons/${information.currentConditions.icon}.png`}
                       alt="Weather Icon"
                       className="weather-icon"
                     />
@@ -82,7 +82,7 @@ const Information = () => {
                         )}
                       </p>
                       <img
-                        src={`../../public/assets/icons/${information.days[0].hours[el].icon}.png`}
+                        src={`/assets/icons/${information.days[0].hours[el].icon}.png`}
                       />
                       <p>{information.days[0].hours[el].temp}°</p>
                     </div>
@@ -103,7 +103,7 @@ const Information = () => {
                         </p>
                       </div>
                       <img
-                        src={`../../public/assets/icons/${information.days[el].icon}.png`}
+                        src={`/assets/icons/${information.days[el].icon}.png`}
                       />
                       <div>
                         <h4>{information.days[el].tempmin}</h4>
