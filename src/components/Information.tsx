@@ -5,9 +5,11 @@ import {
   formatDayAbbrev,
   formatDateNumeric,
 } from "../utils/formatDate";
+import { selectUnits } from "../utils/weatherUnits";
 
 const Information = () => {
-  const { information, loading, errorMessage } = useWeather();
+  const { information, loading, errorMessage, weatherUnit } = useWeather();
+  const units = selectUnits(weatherUnit);
 
   return (
     <div className="weather-information">
@@ -30,23 +32,35 @@ const Information = () => {
                       alt="Weather Icon"
                       className="weather-icon"
                     />
-                    <h1>{information.currentConditions.temp}°</h1>
+                    <h1>
+                      {information.currentConditions.temp}
+                      {units.temp}
+                    </h1>
                     <p>{information.currentConditions.conditions}</p>
                   </div>
                   <div className="weather-details-part2">
                     <div>
                       <div>
-                        <h2>{information.days[0].tempmax}°</h2>
+                        <h2>
+                          {information.days[0].tempmax}
+                          {units.temp}
+                        </h2>
                         <p>High</p>
                       </div>
                       <div>
-                        <h2>{information.days[0].tempmin}°</h2>
+                        <h2>
+                          {information.days[0].tempmin}
+                          {units.temp}
+                        </h2>
                         <p>Low</p>
                       </div>
                     </div>
                     <div>
                       <div>
-                        <h2>{information.currentConditions.windspeed}m/s</h2>
+                        <h2>
+                          {information.currentConditions.windspeed}
+                          {units.wind}
+                        </h2>
                         <p>Wind</p>
                       </div>
                       <div>
@@ -84,7 +98,10 @@ const Information = () => {
                       <img
                         src={`/assets/icons/${information.days[0].hours[el].icon}.png`}
                       />
-                      <p>{information.days[0].hours[el].temp}°</p>
+                      <p>
+                        {information.days[0].hours[el].temp}
+                        {units.temp}
+                      </p>
                     </div>
                   );
                 })}
@@ -106,15 +123,24 @@ const Information = () => {
                         src={`/assets/icons/${information.days[el].icon}.png`}
                       />
                       <div>
-                        <h4>{information.days[el].tempmin}</h4>
+                        <h4>
+                          {information.days[el].tempmin}
+                          {units.temp}
+                        </h4>
                         <p>Low</p>
                       </div>
                       <div>
-                        <h4>{information.days[el].tempmax}</h4>
+                        <h4>
+                          {information.days[el].tempmax}
+                          {units.temp}
+                        </h4>
                         <p>High</p>
                       </div>
                       <div>
-                        <h4>{information.days[el].windspeed}</h4>
+                        <h4>
+                          {information.days[el].windspeed}
+                          {units.wind}
+                        </h4>
                         <p>Wind</p>
                       </div>
                       <div>

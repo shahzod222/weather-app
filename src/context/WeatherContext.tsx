@@ -1,44 +1,5 @@
 import { createContext, useContext, useState, PropsWithChildren } from "react";
-
-type ContextType = {
-  location: string;
-  setLocation: (location: string) => void;
-  loading: boolean;
-  setLoading: (loading: boolean) => void;
-  information: WeatherInformation | null;
-  setInformation: (information: WeatherInformation) => void;
-  errorMessage: string;
-  setErrorMessage: (message: string) => void;
-  weatherUnit: string;
-  setWeatherUnit: (weatherUnit: string) => void;
-  getData: () => void;
-};
-
-type WeatherInformation = {
-  resolvedAddress: string;
-  currentConditions: {
-    icon: string;
-    windspeed: number;
-    temp: number;
-    sunrise: string;
-    sunset: string;
-    humidity: number;
-    conditions: string;
-  };
-  days: {
-    datetime: string;
-    tempmax: number;
-    tempmin: number;
-    windspeed: string;
-    icon: string;
-    humidity: number;
-    hours: {
-      datetime: string;
-      icon: string;
-      temp: number;
-    }[];
-  }[];
-};
+import { ContextType, WeatherInformation } from "../types";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -46,7 +7,7 @@ const WeatherContext = createContext<ContextType | null>(null);
 
 export const WeatherProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [location, setLocation] = useState("");
-  const [weatherUnit, setWeatherUnit] = useState("");
+  const [weatherUnit, setWeatherUnit] = useState("us");
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [information, setInformation] = useState<WeatherInformation | null>(
@@ -58,6 +19,7 @@ export const WeatherProvider: React.FC<PropsWithChildren> = ({ children }) => {
       setErrorMessage("");
       setInformation(null);
       setLoading(true);
+      console.log(weatherUnit);
       const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/?key=${API_KEY}&unitGroup=${weatherUnit}`;
       const response = await fetch(url);
 
