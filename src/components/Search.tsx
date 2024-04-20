@@ -1,9 +1,15 @@
-import { ChangeEvent, FormEvent } from "react";
+import { ChangeEvent, FormEvent, useEffect } from "react";
 import { useWeather } from "../context/WeatherContext";
 
 const Search = () => {
   const { location, setLocation, getData, weatherUnit, setWeatherUnit } =
     useWeather();
+
+  useEffect(() => {
+    if (location) {
+      getData();
+    }
+  }, [weatherUnit]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setLocation(e.target.value);
@@ -33,9 +39,8 @@ const Search = () => {
         onChange={handleUnitChange}
         required
       >
-        <option value="">Select...</option>
-        <option value="metric">Metric</option>
         <option value="us">US</option>
+        <option value="metric">Metric</option>
         <option value="uk">UK</option>
         <option value="base">Base</option>
       </select>
